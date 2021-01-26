@@ -17,24 +17,27 @@ public class Main {
             
             try{
                 s=scn.nextLine();
-            //a=scn.nextInt();
+            //a=scn.nextInt();n(
              }catch(Exception e){break;};
              if (s.isEmpty())break;
              a=Integer.parseInt(s);
              //ways=new int[a+1][6];
-             System.out.println(asd(a,0));
+             long res=asd(a,0);
+             if (res==1)System.out.println("There is only 1 way to produce "+a+" cents change.");
+             else System.out.println("There are "+res+" ways to produce "+a+" cents change.");
+             
         }
         
     }
     public static int[] coins=new int[]{50,25,10,5,1};
-    public static int[][] ways=new int[8000][6];
-    public static int asd(int price, int j){
+    public static long[][] ways=new long[30001][6];
+    public static long asd(int price, int j){
         
         if (price<0)return 0;
         if (price==0)return 1;
         
         if (ways[price][j]>0)return ways[price][j];
-        int ans=0;
+        long ans=0;
         for (int i=j;i<5;i++){
             
             ans+=asd(price-coins[i],i);
@@ -42,5 +45,6 @@ public class Main {
         }
         return ways[price][j]=ans;
     }
+    
     
 }
